@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emulador GBA</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emulador GBA</h1>
+    <canvas id="gbaCanvas" width="240" height="160"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/gh/andrewrk/gameboy-advance-js/gba.js"></script>
+    <script>
+        const canvas = document.getElementById('gbaCanvas');
+        const context = canvas.getContext('2d');
+        let emulator;
+
+        // Cargar la ROM automáticamente desde el servidor
+        function loadROM() {
+            fetch('roms/pkrf.gba')  // Ruta al archivo ROM en el servidor
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    emulator = new GBAEmulator();
+                    emulator.loadROM(arrayBuffer);
+
+                    // Configurar el emulador para dibujar en el canvas
+                    emulator.setScreenCallback(function(pixels) {
+                        const imageData = context.createImageData(240, 160);
+                        imageData.data.set(pixels);
+                        context.putImageData(imageData, 0, 0);
+                    });
+
+                    emulator.start();
+                })
+                .catch(error => {
+                    console.error('Error al cargar la ROM:', error);
+                });
+        }
+
+        // Cargar la ROM al cargar la página
+        window.onload = loadROM;
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main - vda.com.ar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #cccccc, 0 0 30px #aaaaaa;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            padding: 60px 20px 20px 20px; /* Aumenta el padding superior para que las categorías estén por debajo del botón */
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px #999999;
+        }
+
+        .sidebar a:hover {
+            background-color: #444444;
+        }
+
+        .sidebar-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .sidebar-button:hover {
+            background-color: #cccccc;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .sidebar-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sit verum signa esse rectam.</h1>
+
+    <div class="sidebar" id="sidebar">
+        <a href="#">Example 1</a>
+        <a href="#">Example 2</a>
+        <a href="#">Example 3</a>
+        <a href="#">Example 4</a>
+    </div>
+
+    <button class="sidebar-button" id="sidebarButton">&#9776;</button>
+
+    <script>
+        const sidebarButton = document.getElementById('sidebarButton');
+        const sidebar = document.getElementById('sidebar');
+
+        sidebarButton.addEventListener('click', () => {
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-250px';
+            } else {
+                sidebar.style.left = '0px';
+            }
+        });
+    </script>
+
+</body>
+</html>

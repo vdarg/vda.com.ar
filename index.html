@@ -62,6 +62,19 @@
         }
 
         setInterval(generateRandomNumbers, 250);
+
+        const secretCode = "251224";
+        let userInput = "";
+
+        document.addEventListener("keydown", (event) => {
+            userInput += event.key;
+            if (userInput === secretCode) {
+                window.location.href = "main.html";
+            }
+            if (userInput.length > secretCode.length) {
+                userInput = userInput.slice(-secretCode.length);
+            }
+        });
     </script>
 </body>
 </html>
