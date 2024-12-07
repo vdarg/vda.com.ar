@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delbiar</title>
+    <style>
+        body {
+            font-family: MS Gothic, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar div {
+            display: flex;
+            align-items: center;
+        }
+        .top-bar div img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            border-right: 1px solid #ccc;
+        }
+        nav a:last-child::after {
+            display: none;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px 0 0 3px;
+        }
+        .search-container button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 3px 3px 0;
+            background-color: #ddd;
+            cursor: pointer;
+            font-family: MS Gothic, Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 3;
+            padding-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .main-content h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .main-content p {
+            font-size: 1em; /* Reducir tamaño de fuente */
+            margin: 0;
+            display: inline;
+        }
+        .main-content .text-with-image {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+        }
+        .main-content .text-with-image .text {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .main-content .text-with-image img {
+            margin-left: 200px; /* Aumentar margen izquierdo para más espacio */
+            border: none;
+            max-width: 100%;
+            height: auto;
+        }
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar .text-with-image {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar img {
+            height: 40px;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .main-content {
+                padding-right: 0;
+            }
+            header {
+                flex-direction: column;
+            }
+            .main-content .text-with-image {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-content .text-with-image img {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            .main-content .text-with-image .text {
+                position: static;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div>
+                <img src="4.png" alt="Delbiar Logo">
+                <span>Delbiar</span>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="">
+                <button>Ir</button>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="delbiar-art1.html">Delbiar 2</a>
+            <a href="delbiar-art2.html">Delbiar Sagittarius</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <div class="text-with-image yebestum">
+                <div class="text">
+                    <h1>Delbiar 2.</h1>
+                    <p>moderno e integrado.</p>
+                </div>
+                <img src="1.png" alt="Paisaje Estrellado">
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="text-with-image">
+                <div>
+                    <p>Schrift</p>
+                    <p>Schrift + Yebestum = máxima capacidad.</p>
+                </div>
+                <img src="2.png" alt="Icono de Schrift">
+            </div>
+            <div class="text-with-image">
+                <div>
+                    <p>Gmail</p>
+                    <p>Compatible con Yebestum, Lantanum y más.</p>
+                </div>
+                <img src="3.png" alt="Icono de Gmail">
+            </div>
+            <div class="text-with-image">
+                <div>
+                    <p>Insiders</p>
+                    <p>Anotate y prueba las novedades primero.</p>
+                </div>
+                <img src="4.png" alt="Icono de Insiders">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delbiar</title>
+    <style>
+        body {
+            font-family: 'MS Gothic', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Fondo negro */
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 800px; /* Ancho fijo para la página */
+            background-color: white; /* Fondo blanco */
+            border: 1px solid black; /* Bordes negros */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #000000;
+            color: white;
+            text-align: right;
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .gradient-bar {
+            height: 45px;
+            background: linear-gradient(to right, white, black);
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .navbar {
+            background-color: #6699cc;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .navbar span {
+            color: white;
+            font-weight: normal;
+        }
+
+        .content {
+            display: flex;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            width: 100%;
+            max-width: 200px;
+            padding-right: 20px;
+            font-size: 12px;
+            flex: 1 0 auto;
+        }
+
+        .sidebar strong {
+            font-size: 14px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 5px 0;
+        }
+
+        .sidebar ul li a {
+            color: black;
+            text-decoration: underline;
+        }
+
+        .sidebar ul li strong:before {
+            content: "◾";
+            margin-right: 5px;
+        }
+
+        .main-content {
+            width: 100%;
+            flex: 2 1 0;
+            border-left: 1px solid red;
+            padding-left: 20px;
+        }
+
+        .main-content h3 {
+            color: #cc0000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-content h3:before {
+            content: "◾";
+            color: black;
+            margin-right: 5px;
+        }
+
+        .main-content p {
+            margin: 10px 0;
+        }
+
+        .main-content a {
+            color: #0000cc;
+            text-decoration: none;
+        }
+
+        .main-content a:hover {
+            text-decoration: underline;
+        }
+
+        .separator {
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .join-program {
+            display: flex;
+            align-items: center;
+        }
+
+        .join-program img {
+            margin-right: 20px;
+        }
+
+        .grid-titles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .grid-titles p::before {
+            content: "◾";
+            color: black;
+            margin-right: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #0000cc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#">Todos los productos</a> |
+            <a href="#">Soporte</a> |
+            <a href="#">Busqueda</a> |
+            <a href="#">vda.neocities.com/delbiralt</a>
+        </div>
+        <div class="gradient-bar">
+            <img src="logo.png" alt="Logo" class="logo" width="40">
+        </div>
+        <div class="navbar">
+            <a href="#">Inicio</a><span> | </span>
+            <a href="#">Eventos</a><span> | </span>
+            <a href="#">Instrucción</a><span> | </span>
+            <a href="#">Descargas</a>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <ul>
+                    <li><strong>Nuestra familia de productos</strong></li>
+                    <li><a href="#">Kit de desarrollo</a></li>
+                    <li><a href="#">Delbiar 2</a></li>
+                    <li><a href="#">Delbiar UNKN</a></li>
+                    <li><a href="#">Delbiar EXP</a></li>
+                    <li><a href="#">Delbiar Z</a></li>
+                    <li><strong>Soluciones de negocios</strong></li>
+                    <li><a href="#">Delbiar Sagittarius</a></li>
+                    <li><strong>Desarrolladores</strong></li>
+                    <li><a href="#">Desarrollo de software</a></li>
+                    <li><a href="#">Desarrolladores de sitios</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="join-program">
+                    <img src="logo.png" alt="IZQUIERDA" width="50">
+                    <div>
+                        <h3>Unete al programa Beta de Delbiar 2</h3>
+                        <p>Unirse a la beta del sistema operativo Delbiar 2 ofrece numerosos beneficios. Los usuarios tendrán acceso anticipado a las últimas características y mejoras, permitiendo una experiencia de usuario mejorada antes que el público general. Además, los participantes en la beta tendrán la oportunidad de influir en el desarrollo del sistema operativo, proporcionando comentarios valiosos que pueden ayudar a resolver problemas y mejorar la funcionalidad. También podrán disfrutar de un soporte exclusivo y actualizaciones frecuentes, asegurando que siempre tengan la versión más reciente y optimizada del software.</p>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="grid-titles">
+                    <p><a href="#">Delbiar lanza plataforma completa de software y servicios para la industria del cable</a></p>
+                    <p><a href="#">Innovando globalmente: cómo Delbiar se adapta a diferentes mercados</a></p>
+                    <p><a href="#">Desarrolla aplicaciones de base de datos con Delbiar 2</a></p>
+                    <p><a href="#">Participa en la teleconferencia interactiva de Delbiar</a></p>
+                    <p><a href="#">Lee sobre el futuro impacto de Delbiar 2 en la industria tecnológica</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>El diseño de esta página está inspirado en la de Microsoft, año 1998.</p>
+            <p>Delbiar es un proyecto de vda.</p>
+        </div>
+    </div>
+</body>
+</html>
