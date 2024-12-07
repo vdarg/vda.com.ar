@@ -23,21 +23,21 @@
     <h1>Emulador GBA</h1>
     <canvas id="gbaCanvas" width="240" height="160"></canvas>
 
-    <script src="https://cdn.jsdelivr.net/gh/andrewrk/gameboy-advance-js/gba.js"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/gh/andrewrk/gameboy-advance-js/gba.js"></script>
+<script>
+    window.onload = function() {
+        // Ahora es seguro usar GBAEmulator
         const canvas = document.getElementById('gbaCanvas');
         const context = canvas.getContext('2d');
         let emulator;
 
-        // Cargar la ROM automáticamente desde el servidor
         function loadROM() {
-            fetch('roms/pkrf.gba')  // Ruta al archivo ROM en el servidor
+            fetch('roms/pkrf.gba')  // Ruta al archivo ROM
                 .then(response => response.arrayBuffer())
                 .then(arrayBuffer => {
                     emulator = new GBAEmulator();
                     emulator.loadROM(arrayBuffer);
 
-                    // Configurar el emulador para dibujar en el canvas
                     emulator.setScreenCallback(function(pixels) {
                         const imageData = context.createImageData(240, 160);
                         imageData.data.set(pixels);
@@ -51,8 +51,10 @@
                 });
         }
 
-        // Cargar la ROM al cargar la página
-        window.onload = loadROM;
-    </script>
+        loadROM();
+    };
+</script>
+
+
 </body>
 </html>
