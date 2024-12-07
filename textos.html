@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>md-vda</title>
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <style>
+        a {
+
+    color: inherit; /* Hereda el color del texto de su contenedor o especifica un color diferente */
+}
+
+        body {
+            font-family: MS Gothic, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar div {
+            display: flex;
+            align-items: center;
+        }
+        .top-bar div img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            border-right: 1px solid #ccc;
+        }
+        nav a:last-child::after {
+            display: none;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px 0 0 3px;
+        }
+        .search-container button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 3px 3px 0;
+            background-color: #ddd;
+            cursor: pointer;
+            font-family: MS Gothic, Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 3;
+            padding-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .main-content h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .main-content p {
+            font-size: 1em; /* Reducir tamaño de fuente */
+            margin: 0;
+            display: inline;
+        }
+        .main-content .text-with-image {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+        }
+        .main-content .text-with-image .text {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .main-content .text-with-image img {
+            margin-left: 200px; /* Aumentar margen izquierdo para más espacio */
+            border: none;
+            max-width: 100%;
+            height: auto;
+        }
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar .text-with-image {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar img {
+            height: 40px;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .main-content {
+                padding-right: 0;
+            }
+            header {
+                flex-direction: column;
+            }
+            .main-content .text-with-image {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-content .text-with-image img {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            .main-content .text-with-image .text {
+                position: static;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div>
+                <img src="logo.png" alt="Delbiar Logo">
+                <span>Manifiesto Digitalizado de VDA / md-vda </span>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="">
+                <button>Ir</button>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">inicio</a>
+            <a href="sobremi.html">sobre mí</a>
+            <a href="proyectos.html">proyectos</a>
+            <a href="textos.html">textos</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <div class="text-box">
+               <p><a href="https://vdarg.bsky.social/"><img src="bluesky.png" alt="" width="494" height="197" style="display: block; margin-left: auto; margin-right: auto;" /></a></p>
+        </div>
+  
+    </div>
+</body>
+</html>

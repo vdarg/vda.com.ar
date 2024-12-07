@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>md-vda</title>
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <style>
+        a {
+
+    color: inherit; /* Hereda el color del texto de su contenedor o especifica un color diferente */
+}
+
+        body {
+            font-family: MS Gothic, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar div {
+            display: flex;
+            align-items: center;
+        }
+        .top-bar div img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            border-right: 1px solid #ccc;
+        }
+        nav a:last-child::after {
+            display: none;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px 0 0 3px;
+        }
+        .search-container button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-radius: 0 3px 3px 0;
+            background-color: #ddd;
+            cursor: pointer;
+            font-family: MS Gothic, Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 3;
+            padding-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .main-content h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        .main-content p {
+            font-size: 1em; /* Reducir tamaño de fuente */
+            margin: 0;
+            display: inline;
+        }
+        .main-content .text-with-image {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            position: relative;
+        }
+        .main-content .text-with-image .text {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .main-content .text-with-image img {
+            margin-left: 200px; /* Aumentar margen izquierdo para más espacio */
+            border: none;
+            max-width: 100%;
+            height: auto;
+        }
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar .text-with-image {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar img {
+            height: 40px;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .main-content {
+                padding-right: 0;
+            }
+            header {
+                flex-direction: column;
+            }
+            .main-content .text-with-image {
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-content .text-with-image img {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            .main-content .text-with-image .text {
+                position: static;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div>
+                <img src="logo.png" alt="Delbiar Logo">
+                <span>Manifiesto Digitalizado de VDA / md-vda </span>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="">
+                <button>Ir</button>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">inicio</a>
+            <a href="sobremi.html">sobre mí</a>
+            <a href="proyectos.html">proyectos</a>
+            <a href="textos.html">textos</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <div class="text-box">
+                <h3>sobre mi:</h3>
+                <img src="images/favicon.png" alt="" width="133" height="133" style="float: left;" />
+                <p><em>&iquest;Quien es VDA?</em></p>
+                <p>Probablemente te lo preguntaste, quizas no. Lo raro seria habertelo preguntado la verdad, pero bueno.</p>
+                <p>Nac&iacute; en una fecha desconocida a inicios del a&ntilde;o 2006, en una localidad del Conurbano Sur de Buenos Aires. Termin&eacute; mis estudios secundarios en el a&ntilde;o 2023, y desde mitades del 2024 me encontrar&eacute; cursando la carrera de Lic. en Comunicaci&oacute;n Social.</p>
+                <p>En Octubre del 2023 inicie un canal de canciones de Doomerwave, basicamente, canciones remixeadas a ritmos mas lentos y con imperfecciones de fondo. Por alguna raz&oacute;n, muy probablemente para no copiarme de otros canales de musica de esta indole originarios de Argentina, bautiz&eacute; este canal como "Video<a href="articulos/ee.html"><img src="images/betalogo.png" alt="" width="133" height="133" style="float: right;" /></a> Doomer Argentina". Transcurrieron los meses, al canal le fue bien dentro de lo que esperaba, y queria abrir un canal para subir otro tipo de contenido, que originalmente se llamo VDArandom, justamente, las siglas del canal de musica. Posteriormente este canal jamas seria utilizado, y tras muchos a&ntilde;os de espera queria iniciar con mi proyecto de creaci&oacute;n de contenido.</p>
+                <p>Entonces, VDArandom fue rebautizado a simplemente VDA, le hice un rebranding orientado a los colores nacionales, todas mis plataformas cambiaron su usuario a "vda", "vdarg" o "vdaencualquiera".&nbsp;</p>
+                <p>Ah, y abri un canal en <a href="https://bitview.net/user/vda">BitView</a>. No es muy grande, pero es mi mejor obra hasta la fecha, y me encanta.</p>
+            </div>
+        </div>
+  
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<html lang="es"><head>
+    <title>md-vda</title>
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <style>
+        a {
+            color: inherit; /* Hereda el color del texto de su contenedor o especifica un color diferente */
+        }
+        body {
+            font-family: MS Gothic, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar div {
+            display: flex;
+            align-items: center;
+        }
+        .top-bar div img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            border-right: 1px solid #ccc;
+        }
+        nav a:last-child::after {
+            display: none;
+        }
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+            gap: 20px;
+            justify-items: center;
+        }
+        .experiment {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .experiment img {
+            width: 100px;
+            height: 100px;
+        }
+        .experiment h5 {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .experiments-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div>
+                <img src="logo.png" alt="Delbiar Logo">
+                <span>Manifiesto Digitalizado de VDA / md-vda</span>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="">
+                <button>Ir</button>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">inicio</a>
+            <a href="sobremi.html">sobre mí</a>
+            <a href="proyectos.html">proyectos</a>
+            <a href="textos.html">textos</a>
+        </nav>
+    </header>
+    <div class="container">
+        
+        <div class="main-content">
+    
+
+    <div class="text-with-image" style="display: flex; align-items: flex-start;">
+        <img src="1.png" alt="App Screenshot" style="width: 300px; height: auto; margin-right: 20px; border: 1px solid #ccc;">
+        <div class="text" style="max-width: 60%;">
+            <h1 style="font-size: 1.8em; margin-bottom: 10px;">Navegador KDU</h1>
+            <p style="font-size: 1em; line-height: 1.6;">
+                Descubre la mejor experiencia de navegación con nuestro navegador rápido, seguro y fácil de usar. 
+                Navega por tus sitios web favoritos, disfruta de una velocidad optimizada y mantén tu privacidad en todo momento. 
+                Con funciones avanzadas y una interfaz intuitiva, te ofrecemos todo lo que necesitas para una experiencia en línea inigualable.
+            </p>
+            <br>
+            <a href="#" style="font-size: 1.2em; font-weight: bold; color: #000; text-decoration: none; background-color: #ddd; padding: 10px 15px; border: 1px solid #ccc; border-radius: 5px; display: inline-block; margin-top: 10px;">Descargar (1.44 mb)</a>
+        </div>
+    </div>
+
+    </div>
+
+
+    </div>
+
+
+</body></html>

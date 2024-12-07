@@ -1,0 +1,20 @@
+@font-face {
+  font-family: MSG;
+  src: url(msg.ttf);
+}
+
+* {
+-webkit-font-smoothing : none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-family: MSG, Courier, monospace
+
+  }
+
+  .titulo {
+    text-align: center;
+  }
+  
+  .back {
+    text-align: center;
+  }
