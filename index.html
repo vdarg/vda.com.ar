@@ -3,78 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vda.com.ar</title>
+    <title>Explorador de Archivos</title>
     <style>
+        @font-face {
+            font-family: 'MSGothic';
+            src: local('MS Gothic'), local('ＭＳ ゴシック');
+        }
+
         body {
-            margin: 0;
-            height: 100vh;
+            background-color: black;
+            color: green;
+            font-family: 'MSGothic', monospace;
+            font-size: 16px;
+            text-shadow: none;
+            text-align: center;
+        }
+
+        a {
+            color: green;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .directory {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .subitems {
+            margin-left: 20px;
+            display: none;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+        }
+
+        .visible {
+            display: block;
+            opacity: 1;
+            height: auto;
+        }
+
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #000000;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
+            flex-direction: column;
         }
 
-        h1 {
-            font-size: 5rem;
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #cccccc, 0 0 30px #aaaaaa;
-            animation: pulse 1.5s infinite;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            color: #ffffff;
-            text-shadow: 0 0 5px #999999;
-        }
-
-        .numbers {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-top: 20px;
-            text-shadow: 0 0 8px #ffffff;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                text-shadow: 0 0 10px #ffffff, 0 0 20px #cccccc, 0 0 30px #aaaaaa;
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 15px #ffffff, 0 0 25px #bbbbbb, 0 0 35px #aaaaaa;
-            }
+        #password-input {
+            background-color: black;
+            color: green;
+            font-family: 'MSGothic', monospace;
+            border: 1px solid green;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
         }
     </style>
-</head>
-<body>
-    <h1>PRÓXIMAMENTE</h1>
-    <h2>Spes in futuro adhuc est quamvis defluxerit</h2>
-    <div class="numbers" id="randomNumbers">000000</div>
-
     <script>
-        function generateRandomNumbers() {
-            const randomNumbers = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            document.getElementById('randomNumbers').textContent = randomNumbers;
+        function toggleVisibility(event) {
+            event.preventDefault();
+            let subitems = event.target.nextElementSibling;
+            if (subitems) {
+                if (subitems.classList.contains('visible')) {
+                    subitems.style.opacity = '0';
+                    subitems.style.height = '0';
+                    setTimeout(() => subitems.classList.remove('visible'), 300);
+                } else {
+                    subitems.classList.add('visible');
+                    subitems.style.height = subitems.scrollHeight + 'px';
+                    setTimeout(() => subitems.style.opacity = '1', 10);
+                }
+            }
         }
 
-        setInterval(generateRandomNumbers, 250);
-
-        const secretCode = "251224";
-        let userInput = "";
-
-        document.addEventListener("keydown", (event) => {
-            userInput += event.key;
-            if (userInput === secretCode) {
-                window.location.href = "main.html";
+        function checkPassword() {
+            let password = document.getElementById('password-input').value;
+            if (password === '170406') {
+                document.getElementById('login-screen').style.display = 'none';
+            } else {
+                alert('Clave incorrecta');
             }
-            if (userInput.length > secretCode.length) {
-                userInput = userInput.slice(-secretCode.length);
-            }
-        });
+        }
     </script>
+</head>
+<body>
+    <div id="login-screen">
+        <p>Ingrese la clave para acceder:</p>
+        <input type="password" id="password-input">
+        <button onclick="checkPassword()">Entrar</button>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">proyectos</a>
+        <div class="subitems">
+            <a href="#">Proyecto1</a><br>
+            <a href="#">Proyecto2</a><br>
+            <a href="#">Proyecto3</a>
+        </div>
+    </div>
+    
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">videos</a>
+        <div class="subitems">
+            <a href="#">Video1.mp4</a><br>
+            <a href="#">Video2.mp4</a><br>
+            <a href="#">Video3.mp4</a>
+        </div>
+    </div>
+    
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">registros</a>
+        <div class="subitems">
+            <a href="#">Registro1.txt</a><br>
+            <a href="#">Registro2.txt</a><br>
+            <a href="#">Registro3.txt</a>
+        </div>
+    </div>
+    
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">programas</a>
+        <div class="subitems">
+            <a href="#">Zentum</a><br>
+            <a href="#">Dinumun</a><br>
+            <a href="#">Ateus</a>
+        </div>
+    </div>
+    
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">utilidades</a>
+        <div class="subitems">
+            <a href="#">Herramienta1</a><br>
+            <a href="#">Herramienta2</a><br>
+            <a href="#">Herramienta3</a>
+        </div>
+    </div>
 </body>
 </html>
