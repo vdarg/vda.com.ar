@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIVDA Retro</title>
+    <style>
+        body {
+            font-family: 'MS Gothic', sans-serif;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        #login, #register, #app {
+            max-width: 100%;
+            width: 400px;
+            margin: 20px auto;
+            background: #333;
+            padding: 20px;
+            border: 1px solid #555;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            margin-top: 10px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #555;
+            resize: none;
+        }
+        button {
+            margin-top: 10px;
+            background: #555;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #777;
+        }
+        #feed div {
+            background: #444;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #555;
+            text-align: left;
+        }
+        #logout {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+        .tweet-user {
+            font-weight: bold;
+            display: block;
+        }
+        .like-button, .dislike-button {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .like-button img, .dislike-button img {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+        #app {
+            text-align: left;
+        }
+        #user-info {
+            margin-bottom: 10px;
+        }
+        .tweet-content {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+        }
+        .tweet {
+            border-radius: 0px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            #login, #register, #app {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="login">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="login-username" placeholder="Usuario">
+        <input type="password" id="login-password" placeholder="Contraseña">
+        <button onclick="login()">Entrar</button>
+        <p>¿No tienes cuenta? <a href="#" onclick="showRegister()">Regístrate</a></p>
+        <p id="login-error" class="error-message"></p>
+    </div>
+    
+    <div id="register" style="display: none;">
+        <h2>Registro</h2>
+        <input type="text" id="register-username" placeholder="Usuario">
+        <input type="password" id="register-password" placeholder="Contraseña">
+        <button onclick="register()">Registrarse</button>
+        <p>¿Ya tienes cuenta? <a href="#" onclick="showLogin()">Inicia sesión</a></p>
+        <p id="register-error" class="error-message"></p>
+    </div>
+    
+    <div id="app" style="display: none;">
+        <button id="logout" onclick="logout()">Cerrar Sesión</button>
+        <div id="user-info"></div>
+        <h1>TIVDA</h1>
+        <textarea id="post-content" placeholder="¿Qué estás pensando?"></textarea>
+        <button onclick="postTweet()">Publicar</button>
+        <div id="feed"></div>
+    </div>
+    
+    <script>
+        let users = JSON.parse(localStorage.getItem('users')) || {};
+        let tivdaTweets = JSON.parse(localStorage.getItem('tivdaTweets')) || [];
+        let currentUser = null;
+
+        // Detecta "dump" cuando el usuario escribe en el área de inicio de sesión
+        document.getElementById('login-username').addEventListener('keyup', function () {
+            const inputText = document.getElementById('login-username').value.toLowerCase();
+            if (inputText === 'dump') {
+                downloadData();
+            }
+        });
+
+        function showRegister() {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('register').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('register').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+        }
+
+        function showErrorMessage(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.innerText = message;
+            element.style.display = 'block';
+            setTimeout(() => { element.style.display = 'none'; }, 3000);
+        }
+
+        function register() {
+            const username = document.getElementById('register-username').value.toUpperCase().trim();
+            const password = document.getElementById('register-password').value.trim();
+            if (users[username]) {
+                showErrorMessage('register-error', 'El usuario ya existe');
+            } else {
+                users[username] = password;
+                localStorage.setItem('users', JSON.stringify(users));
+                alert('Registro exitoso, ahora inicia sesión.');
+                showLogin();
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value.toUpperCase().trim();
+            const password = document.getElementById('login-password').value.trim();
+            if (users[username] && users[username] === password) {
+                currentUser = username;
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('register').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                document.getElementById('user-info').innerText = `Bienvenido, ${username}`;
+                renderTweets();
+            } else {
+                showErrorMessage('login-error', 'Usuario o contraseña incorrectos');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('app').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+        }
+
+        function postTweet() {
+            const content = document.getElementById('post-content').value;
+            if (content.trim()) {
+                tivdaTweets.unshift({ user: currentUser, content, likes: 0, dislikes: 0, likedBy: [], dislikedBy: [] });
+                localStorage.setItem('tivdaTweets', JSON.stringify(tivdaTweets));
+                document.getElementById('post-content').value = '';
+                renderTweets();
+            }
+        }
+
+        function reactTweet(index, reactionType) {
+            const tweet = tivdaTweets[index];
+            if (!tweet.likedBy) tweet.likedBy = [];
+            if (!tweet.dislikedBy) tweet.dislikedBy = [];
+
+            if (reactionType === 'like') {
+                if (tweet.dislikedBy.includes(currentUser)) {
+                    tweet.dislikes--;
+                    tweet.dislikedBy = tweet.dislikedBy.filter(user => user !== currentUser);
+                }
+                if (!tweet.likedBy.includes(currentUser)) {
+                    tweet.likes++;
+                    tweet.likedBy.push(currentUser);
+                } else {
+                    tweet.likes--;
+                    tweet.likedBy = tweet.likedBy.filter(user => user !== currentUser);
+                }
+            } else if (reactionType === 'dislike') {
+                if (tweet.likedBy.includes(currentUser)) {
+                    tweet.likes--;
+                    tweet.likedBy = tweet.likedBy.filter(user => user !== currentUser);
+                }
+                if (!tweet.dislikedBy.includes(currentUser)) {
+                    tweet.dislikes++;
+                    tweet.dislikedBy.push(currentUser);
+                } else {
+                    tweet.dislikes--;
+                    tweet.dislikedBy = tweet.dislikedBy.filter(user => user !== currentUser);
+                }
+            }
+
+            localStorage.setItem('tivdaTweets', JSON.stringify(tivdaTweets));
+            renderTweets();
+        }
+
+        function renderTweets() {
+            const feed = document.getElementById('feed');
+            feed.innerHTML = '';
+            tivdaTweets.forEach((tweet, index) => {
+                const tweetElement = document.createElement('div');
+                tweetElement.className = 'tweet';
+                tweetElement.innerHTML = `
+                    <span class="tweet-user">${tweet.user}</span>
+                    <div class="tweet-content">> ${tweet.content}</div>
+                    <div class="tweet-likes">
+                        <div class="like-button" onclick="reactTweet(${index}, 'like')">
+                            <img src="https://media.tenor.com/8hlbJybOlKUAAAAj/pixel-heart.gif" alt="Me gusta">${tweet.likes} Me gusta
+                        </div>
+                        <div class="dislike-button" onclick="reactTweet(${index}, 'dislike')">
+                            <img src="https://wallpapers.com/images/hd/minecraft-heart-pixel-art-kle9h1hdv0w6hgoq.jpg" alt="Disgusta">${tweet.dislikes} Disgusta
+                        </div>
+                    </div>
+                `;
+                feed.appendChild(tweetElement);
+            });
+        }
+
+        // Descargar base de datos si se escribe 'dump'
+        function downloadData() {
+            const data = JSON.stringify(tivdaTweets);
+            const blob = new Blob([data], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'tivdaTweets.json';
+            link.click();
+        }
+    </script>
+</body>
+</html>
