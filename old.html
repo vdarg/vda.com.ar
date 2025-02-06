@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vda.com.ar</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        a {
+            color: green;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .directory {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .subitems {
+            margin-left: 20px;
+            display: none;
+        }
+
+        #login-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        #password-input {
+            background-color: black;
+            color: green;
+            border: 1px solid green;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function toggleVisibility(event) {
+            var link = event.srcElement || event.target; 
+            var subitems = link.nextSibling;
+            while (subitems && subitems.nodeType !== 1) { 
+                subitems = subitems.nextSibling;
+            }
+            if (subitems) {
+                subitems.style.display = (subitems.style.display === 'block') ? 'none' : 'block';
+            }
+        }
+
+        function checkPassword() {
+            var password = document.getElementById('password-input').value;
+            if (password === '170406') {
+                document.getElementById('login-screen').style.display = 'none';
+            } else {
+                alert('Clave incorrecta');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="login-screen">
+        <p>Ingrese la clave para acceder:</p>
+        <input type="password" id="password-input">
+        <button onclick="checkPassword()">Entrar</button>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">proyectos</a>
+        <div class="subitems">
+            <a href="#">Proyecto1</a><br>
+            <a href="#">Proyecto2</a><br>
+            <a href="#">Proyecto3</a>
+        </div>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">videos</a>
+        <div class="subitems">
+            <a href="#">Video1.mp4</a><br>
+            <a href="#">Video2.mp4</a><br>
+            <a href="#">Video3.mp4</a>
+        </div>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">registros</a>
+        <div class="subitems">
+            <a href="#">Registro1.txt</a><br>
+            <a href="#">Registro2.txt</a><br>
+            <a href="#">Registro3.txt</a>
+        </div>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">programas</a>
+        <div class="subitems">
+            <a href="#">Zentum</a><br>
+            <a href="#">Dinumun</a><br>
+            <a href="#">Ateus</a>
+        </div>
+    </div>
+
+    <div class="directory">/<a href="#" onclick="toggleVisibility(event)">utilidades</a>
+        <div class="subitems">
+            <a href="#">Herramienta1</a><br>
+            <a href="#">Herramienta2</a><br>
+            <a href="#">Herramienta3</a>
+        </div>
+    </div>
+</body>
+</html>
