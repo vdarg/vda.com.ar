@@ -1,1 +1,633 @@
+<html lang="es"><head>
+    <meta charset="UTF-P">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDA - Vínculos de Desarrollo Argentino</title>
+    <style>
+        /* Reset y Estilos Globales */
+        :root {
+            --color-primario: #2c5e3A; /* Verde oscuro VDA */
+            --color-secundario: #6a8c3d; /* Verde medio VDA */
+            --color-acento: #f3a712; /* Amarillo/Naranja para pan y energía */
+            --color-fondo: #f4f4f4;
+            --color-texto: #333333;
+            --color-blanco: #ffffff;
+            /* Fuentes más sencillas y estándar */
+            --fuente-principal: Arial, Helvetica, sans-serif;
+            --fuente-titulos: Georgia, serif;
+        }
 
+        /* Ya no importamos fuentes de Google para usar las fuentes del sistema/navegador */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente-principal);
+            line-height: 1.6;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+            overflow-x: hidden; /* Prevenir scroll horizontal */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden; /* Clearfix */
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--fuente-titulos);
+            color: var(--color-primario);
+            margin-bottom: 0.75em;
+        }
+        
+        h1 { font-size: 2.8em; text-align: center; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.8em; }
+
+        p {
+            margin-bottom: 1em;
+            text-align: justify;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 1.5em 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px; /* Padding horizontal en el contenedor del header */
+        }
+        
+        .logo {
+            font-family: var(--fuente-titulos); /* Mantenemos la fuente de títulos para el logo */
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--color-blanco);
+        }
+        
+        .logo span {
+            color: var(--color-acento);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--color-acento);
+            color: var(--color-primario);
+        }
+        
+        /* Menú Hamburguesa para móviles */
+        .menu-toggle {
+            display: none; /* Oculto por defecto */
+            font-size: 1.5em;
+            color: var(--color-blanco);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 94, 58, 0.85), rgba(44, 94, 58, 0.85)), url('https://source.unsplash.com/random/1600x900/?community,argentina,nature') no-repeat center center/cover;
+            color: var(--color-blanco);
+            padding: 100px 20px; /* Añadido padding horizontal para que el texto no toque los bordes */
+            text-align: center; /* Esto centrará el h1 y el p.subtitle */
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            color: var(--color-blanco);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero .subtitle {
+             font-size: 1.5em;
+             margin-bottom: 1.5em;
+             font-family: var(--fuente-principal); /* Usará Arial, Helvetica, sans-serif */
+             font-weight: 400;
+             /* text-align: center; ya está cubierto por .hero text-align: center */
+             max-width: 900px; /* Opcional: para que no sea excesivamente ancho en pantallas grandes */
+             margin-left: auto; /* Centra el bloque si max-width está activo */
+             margin-right: auto; /* Centra el bloque si max-width está activo */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--color-primario);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #e09000; 
+            transform: translateY(-3px);
+        }
+
+        /* Secciones */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-bg-light {
+            background-color: var(--color-blanco);
+        }
+        
+        .section-bg-grey {
+            background-color: var(--color-fondo);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: stretch; 
+        }
+
+        .card {
+            background-color: var(--color-blanco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--color-secundario);
+            margin-top: 0;
+        }
+        
+        .card .icon {
+            font-size: 3em;
+            color: var(--color-acento);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .card p {
+            flex-grow: 1; 
+        }
+        
+        .card a.read-more {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: auto; 
+        }
+        
+        .card a.read-more:hover {
+            text-decoration: underline;
+            color: var(--color-acento);
+        }
+
+        #quienes-somos .content-wrapper {
+            display: flex;
+            flex-wrap: wrap; 
+            align-items: center;
+            gap: 40px;
+        }
+
+        #quienes-somos .text-content {
+            flex: 1;
+            min-width: 300px; 
+        }
+
+        #quienes-somos .image-content {
+            flex: 1;
+            min-width: 300px; 
+            text-align: center; 
+        }
+
+        #quienes-somos .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .impact-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            margin: 20px;
+            flex-basis: 200px; 
+        }
+        .stat-item .number {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--color-acento);
+            font-family: var(--fuente-titulos); /* Georgia, serif */
+        }
+        .stat-item .description {
+            font-size: 1.1em;
+            color: var(--color-secundario);
+        }
+
+        .testimonial {
+            background-color: var(--color-secundario);
+            color: var(--color-blanco);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial p { margin-bottom: 0.5em; }
+        .testimonial .author {
+            text-align: right;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        footer {
+            background-color: var(--color-texto);
+            color: var(--color-blanco);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9em;
+        }
+        
+        footer p { margin-bottom: 0.5em; }
+
+        footer .social-links a {
+            color: var(--color-blanco);
+            margin: 0 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer .social-links a:hover {
+            color: var(--color-acento);
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 1.5em; }
+            
+            nav ul {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px; 
+                left: 0;
+                background-color: var(--color-primario);
+                padding: 10px 0;
+            }
+            
+            nav ul.active {
+                display: flex; 
+            }
+
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block; 
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+
+            #quienes-somos .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr; 
+            }
+            .impact-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#hero" class="logo scroll-link">V<span>D</span>A</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                ☰ 
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#quienes-somos" class="scroll-link">¿Qué es VDA?</a></li>
+                    <li><a href="#pilares" class="scroll-link">Nuestros Pilares</a></li>
+                    <li><a href="#impacto" class="scroll-link">Impacto</a></li>
+                    <li><a href="#sumate" class="scroll-link">Sumate</a></li>
+                    <li><a href="#contacto" class="scroll-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Vínculos de Desarrollo Argentino</h1>
+            <p class="subtitle">Tejiendo redes para un futuro sostenible y solidario, uniendo Buenos Aires y Río Negro.</p>
+            <a href="#quienes-somos" class="cta-button scroll-link">Conocé Más</a>
+        </div>
+    </section>
+
+    <section id="quienes-somos" class="section-bg-light">
+        <div class="container">
+            <h2>¿Qué es V<span>D</span>A? Nuestra Esencia</h2>
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <p><strong>Vínculos de Desarrollo Argentino (VDA)</strong> es mucho más que una simple iniciativa; es un movimiento transformador que nace del corazón de nuestras comunidades, con la visión de construir un futuro más próspero, equitativo y sostenible. Surgimos de la convicción de que el progreso real se cultiva desde la base, fortaleciendo los lazos locales y regionales, y reconociendo el potencial inmenso que reside en la colaboración y la acción ciudadana.</p>
+                    <p>Nuestra filosofía se arraiga en la creencia de que cada residuo puede tener una nueva vida, que el pan puede ser un vehículo de solidaridad y desarrollo económico, y que las fronteras provinciales, lejos de ser barreras, son puentes para el intercambio de saberes, culturas y oportunidades. VDA es el resultado tangible de la sinergia entre la pujanza de la Provincia de Buenos Aires y la riqueza natural y humana de Río Negro, dos gigantes que, unidos, potencian sus fortalezas individuales.</p>
+                    <p>Impulsamos un modelo de desarrollo integral que aborda desafíos ambientales, sociales y económicos de manera interconectada. No vemos la recolección de residuos como una mera tarea de limpieza, sino como el primer eslabón de una cadena de valor que incluye la educación ambiental, el reciclaje, la reutilización y la generación de empleo verde. Nuestros programas de panificación artesanal no solo ofrecen productos de calidad superior, sino que también capacitan a emprendedores locales, fomentan el uso de ingredientes regionales y destinan parte de sus ingresos a proyectos comunitarios.</p>
+                    <p>La fusión interprovincial es el alma de VDA. Creemos firmemente en el federalismo práctico, donde el conocimiento generado en un rincón de la provincia de Buenos Aires puede florecer en una localidad rionegrina, y viceversa. Facilitamos el intercambio de tecnologías apropiadas, mejores prácticas agrícolas, estrategias turísticas sostenibles y expresiones culturales, enriqueciendo a ambas regiones y fortaleciendo la identidad nacional desde la diversidad.</p>
+                </div>
+                <div class="image-content">
+                    <img src="https://www.clacso.org/wp-content/uploads/2020/04/cuaren2.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pilares" class="section-bg-grey">
+        <div class="container">
+            <h2>Nuestros Pilares Fundamentales</h2>
+            <p style="text-align:center; max-width: 800px; margin-left:auto; margin-right:auto;">En VDA, nuestras acciones se sustentan en tres pilares interconectados que guían nuestra misión y definen nuestro impacto en las comunidades.</p>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="icon">🗑</div> 
+                    <h3>Gestión Innovadora de Residuos</h3>
+                    <p>Transformamos la problemática de los residuos en una oportunidad. Implementamos sistemas de recolección diferenciada, promovemos el compostaje domiciliario y comunitario, y apoyamos el desarrollo de emprendimientos de reciclaje. Nuestro enfoque "Basura Cero" busca minimizar el impacto ambiental, educar a la población y generar valor a partir de lo que muchos consideran desecho. Desde talleres de concientización en escuelas hasta la creación de "Puntos Verdes VDA" en barrios estratégicos, trabajamos incansablemente para una gestión circular y responsable.</p>
+                    <a href="#" class="read-more">Leer más sobre nuestros proyectos de residuos →</a>
+                </div>
+                <div class="card">
+                    <div class="icon">🍞</div> 
+                    <h3>Pan Solidario y Desarrollo Local</h3>
+                    <p>El "Pan Solidario VDA" es más que un alimento: es un símbolo de esperanza y progreso. A través de nuestras panaderías comunitarias y programas de capacitación, fomentamos la producción de panificados artesanales con ingredientes locales y técnicas tradicionales. Estos emprendimientos no solo generan empleo y ingresos para familias, sino que también destinan un porcentaje de sus ventas a financiar otras iniciativas sociales y ambientales de VDA. Creemos en el poder del "kilómetro cero" y en el sabor auténtico de nuestra tierra.</p>
+                    <a href="#" class="read-more">Descubrí el proyecto Pan Solidario →</a>
+                </div>
+                <div class="card">
+                    <div class="icon">🔗</div> 
+                    <h3>Fusión Interprovincial Buenos Aires - Río Negro</h3>
+                    <p>Somos un puente activo entre la dinámica Provincia de Buenos Aires y la vasta y promisoria Río Negro. Esta "Alianza Estratégica Territorial" facilita el intercambio de conocimientos, tecnologías, recursos culturales y experiencias exitosas. Fomentamos proyectos conjuntos en áreas como el turismo sostenible, la agricultura orgánica, la conservación de la biodiversidad y el desarrollo de energías renovables. Esta sinergia potencia el desarrollo regional, fortalece las economías locales y enriquece la vida de sus habitantes.</p>
+                    <a href="#" class="read-more">Conocé la alianza interprovincial →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impacto" class="section-bg-light">
+        <div class="container">
+            <h2>Nuestro Impacto Transformador</h2>
+            <p style="text-align:center; max-width: 800px; margin-left:auto; margin-right:auto;">Los números hablan por sí solos, pero el verdadero impacto de VDA se mide en sonrisas, en comunidades fortalecidas y en un ambiente más saludable para las futuras generaciones. Estamos orgullosos de lo que hemos logrado juntos.</p>
+            <div class="impact-stats">
+                <div class="stat-item">
+                    <div class="number" data-target="150000">150.000</div>
+                    <div class="description">Kilos de residuos reciclados anualmente</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-target="500">500</div>
+                    <div class="description">Familias beneficiadas directamente</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-target="85">85</div>
+                    <div class="description">Emprendimientos locales apoyados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" data-target="20">20</div>
+                    <div class="description">Proyectos de colaboración interprovincial</div>
+                </div>
+            </div>
+            <div style="margin-top: 40px;">
+                <h3 style="text-align:center;">Voces de la Comunidad</h3>
+                <div class="grid-container">
+                    <div class="testimonial">
+                        <p>"Desde que VDA llegó a nuestro barrio, la plaza está más limpia y aprendimos a separar la basura. ¡Hasta tenemos una compostera comunitaria!"</p>
+                        <p class="author">- María L., vecina de un barrio en Buenos Aires.</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Gracias al programa de Pan Solidario, pude iniciar mi propio emprendimiento. Ahora tengo un ingreso estable y mis panes son famosos en la comarca."</p>
+                        <p class="author">- Juan C., emprendedor de Río Negro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sumate" class="section-bg-grey">
+        <div class="container">
+            <h2 style="text-align: center;">Sumate a la Transformación</h2>
+            <p style="text-align:center; max-width: 800px; margin-left:auto; margin-right:auto;">VDA es una iniciativa de todos y para todos. Tu participación es fundamental para seguir creciendo y generando un impacto positivo. Hay muchas formas de colaborar y ser parte de este movimiento.</p>
+            <div class="grid-container">
+                <div class="card">
+                    <h3><span class="icon">💛</span> Sé Voluntario/a</h3>
+                    <p>Dedicá tu tiempo y talento a nuestras causas. Necesitamos manos para talleres, eventos de recolección, apoyo logístico y difusión. Cada hora de tu ayuda es invaluable para nosotros y para la comunidad.</p>
+                    <a href="#contacto" class="read-more scroll-link">Quiero ser voluntario →</a>
+                </div>
+                <div class="card">
+                    <h3><span class="icon">💰</span> Realizá una Donación</h3>
+                    <p>Tu aporte económico, por pequeño que sea, nos permite financiar proyectos, adquirir materiales y expandir nuestro alcance. Ayudanos a seguir transformando realidades.</p>
+                    <a href="#contacto" class="read-more scroll-link">Quiero donar →</a>
+                </div>
+                <div class="card">
+                    <h3><span class="icon">📢</span> Difundí Nuestra Labor</h3>
+                    <p>Contale a tus amigos, familiares y colegas sobre VDA. Seguinos en redes sociales, compartí nuestras publicaciones y ayudanos a que más personas conozcan nuestro trabajo y se sumen.</p>
+                    <a href="#contacto" class="read-more scroll-link">Seguinos en redes →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="section-bg-light">
+        <div class="container">
+            <h2 style="text-align: center;">Ponete en Contacto</h2>
+            <p style="text-align:center; max-width: 700px; margin-left:auto; margin-right:auto;">¿Tenés preguntas, ideas, o querés colaborar? ¡Nos encantaría escucharte! Escribinos o visitanos en nuestras sedes.</p>
+            <div style="max-width: 600px; margin: 30px auto; background: var(--color-blanco); padding:30px; border-radius:8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <form id="contact-form">
+                    <div style="margin-bottom: 15px;">
+                        <label for="name" style="display:block; margin-bottom:5px; font-weight:bold;">Nombre Completo:</label>
+                        <input type="text" id="name" name="name" required="" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="email" style="display:block; margin-bottom:5px; font-weight:bold;">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required="" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="subject" style="display:block; margin-bottom:5px; font-weight:bold;">Asunto:</label>
+                        <input type="text" id="subject" name="subject" required="" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label for="message" style="display:block; margin-bottom:5px; font-weight:bold;">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required="" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width:100%; border:none;">Enviar Mensaje</button>
+                </form>
+            </div>
+             <p style="text-align:center; margin-top:30px;"><strong>Sede Central Buenos Aires:</strong> Av. de Mayo 555, CABA.</p>
+             <p style="text-align:center;"><strong>Delegación Río Negro:</strong> Calle Falsa 123, Viedma.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear">2025</span> Vínculos de Desarrollo Argentino (VDA). Todos los derechos reservados.</p>
+            <p>Una iniciativa para un futuro más brillante, conectando comunidades y provincias.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook VDA">F</a> 
+                <a href="#" aria-label="Instagram VDA">I</a>
+                <a href="#" aria-label="Twitter VDA">T</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a.scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, 
+                        behavior: 'smooth'
+                    });
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        menuToggle.setAttribute('aria-label', 'Abrir menú');
+                        menuToggle.innerHTML = '&#9776;';
+                    }
+                }
+            });
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            if (mainNav.classList.contains('active')) {
+                menuToggle.setAttribute('aria-label', 'Cerrar menú');
+                menuToggle.innerHTML = '&times;'; 
+            } else {
+                menuToggle.setAttribute('aria-label', 'Abrir menú');
+                menuToggle.innerHTML = '&#9776;'; 
+            }
+        });
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString('es-AR');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const targetValue = parseInt(el.dataset.target);
+                    animateValue(el, 0, targetValue, 2000); 
+                    observer.unobserve(el); 
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        document.querySelectorAll('.impact-stats .number').forEach(item => {
+            observer.observe(item);
+        });
+
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto. (Esto es una simulación)');
+            this.reset();
+        });
+
+    </script>
+
+
+</body></html>
